@@ -3,7 +3,7 @@ from telebot import types
 
 bot = telebot.TeleBot('Your token')
 joinedUsers = set()  
-joinedFile = open("E:/python_lol/love_bot/users.txt", "r")
+joinedFile = open("users.txt", "r")
 
 
 
@@ -37,7 +37,7 @@ def handle_username(message):
 
 def handle_text(message):
     message_text = message.text
-    joinedFile = open("E:/python_lol/love_bot/users_text.txt", "a")
+    joinedFile = open("users_text.txt", "a")
     joinedFile.write(message_text + "\n")
     joinedUsers.add(message_text)
     bot.send_message(message.chat.id, 'Текст добавлен в список, для продолжения нажмите сюда: /user')
@@ -51,22 +51,22 @@ def after_send(message):
 
 def add_user(message):
     message_text = message.text
-    joinedFile = open("E:/python_lol/love_bot/users.txt", "a")
+    joinedFile = open("users.txt", "a")
     joinedFile.write(message_text + "\n")
     joinedUsers.add(message_text)
     bot.send_message(message.chat.id, 'Пользователь добавлен в список, для продолжения нажмите сюда: /send')
 
 @bot.message_handler(commands=['send'])
 def bot_send(message):
-    with open("E:/python_lol/love_bot/users.txt", "r") as users_file:
+    with open("users.txt", "r") as users_file:
         users = users_file.readlines()
-        with open("E:/python_lol/love_bot/users_text.txt", "r") as text_file:
+        with open("users_text.txt", "r") as text_file:
             text = text_file.read()
             for user_id in users:
                 user_id = user_id.strip()
                 bot.send_message(user_id, text)
-    open("E:/python_lol/love_bot/users.txt", "w").close()
-    open("E:/python_lol/love_bot/users_text.txt", "w").close()
+    open("users.txt", "w").close()
+    open("users_text.txt", "w").close()
     bot.send_message(message.chat.id, 'Текст успешно отправлен!')        
     
        
