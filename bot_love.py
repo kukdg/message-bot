@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
 
-bot = telebot.TeleBot('7062071632:AAHirM37h-NSFvaj8pT3K1kQEv8XZ-KCDkg')
+bot = telebot.TeleBot('Your token')
 joinedUsers = set()  
 joinedFile = open("E:/python_lol/love_bot/users.txt", "r")
 
